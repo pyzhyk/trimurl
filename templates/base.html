@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Django Auth Tutorial{% endblock %}</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'main.css' %}">
+  <script src="{% static 'jquery.min.js' %}"></script>
+  <script src="{% static 'bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'main.js' %}"></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Trim that link!</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="/">Home
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+      </ul>
+      {% if user.is_authenticated %}
+      <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+      <li class="dropdown">
+          <a class="nav-link dropdown-toggle text-primary" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{ user.username }}</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="/mylinks/">My links</a>
+            <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+          </div>
+        </li>
+      </ul>
+    {% else %}
+      </ul>
+      <a role="button"class="btn btn-secondary loginbtn" href="/accounts/login/">Log In</a>
+      <a role="button" class="btn btn-success" href="/accounts/signup/">Sign Up</a>
+    {% endif %}
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="mt-5"></div>
+<h3>
+<p>Short url is: <a id="shorturl" class="mr-2" href="{{short_url}}">{{short_url}}</a><button type="button" class="btn btn-primary copybtn" onclick="copyShortUrl()">Copy</button></p>
+</h3>
+<h5><p>Long url is: <a href="{{long_url}}">{{long_url}}</a></p></h5>
+{% endblock %}
