@@ -15,14 +15,27 @@ cd trimurl
 3. Install prerequisites
 ```bash
 apt update
-apt install python3 python3-pip
+apt install python3 python3-pip mariadb
 pip3 install -r requirements.txt
 ```
-4. Run server
+
+4. Log in as root user
+```bash
+sudo su
+```
+
+5. Set up database and log out from root user
+```bash
+systemctl start mysql
+cat init.sql | mysql
+exit
+````
+
+6. Run server
 ```bash
 python3 manage.py runserver
 ```
-5. Go to url: `http://127.0.0.1:8000/`
+7. Go to url: `http://127.0.0.1:8000/`
 
 
 ## Result
